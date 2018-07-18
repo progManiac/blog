@@ -118,3 +118,13 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+.btn-publish {
+    background-color: #d58512;
+    color: white;
+}
+
+.btn-publish:hover {
+    color: white;
+}

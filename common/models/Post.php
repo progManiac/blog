@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 
@@ -17,6 +17,7 @@ use Yii;
  */
 class Post extends \yii\db\ActiveRecord
 {
+
     const STATUS_SAVED = 0;
     const STATUS_PUBLISHED = 1;
     const STATUS_DELETED = 2;

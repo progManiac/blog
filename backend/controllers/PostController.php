@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\Post;
+use common\models\Post;
 use backend\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -99,18 +99,82 @@ class PostController extends Controller
     }
 
     /**
+     * Publishes an existing Post model.
+     * If publish is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionPublish($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = $model::STATUS_PUBLISHED;
+        $model->save();
+
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /**
+     * Hides an existing Post model.
+     * If hide is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionHide($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = $model::STATUS_SAVED;
+        $model->save();
+
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /**
+     * Deletes an existing Post model.
+     * If deletion is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionPseudelete($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = $model::STATUS_DELETED;
+        $model->save();
+
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /**
+     * Restores an existing Post model.
+     * If restore is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionRestore($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = $model::STATUS_SAVED;
+        $model->save();
+
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /*
      * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+   /* public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
+    }*/
 
     /**
      * Finds the Post model based on its primary key value.
