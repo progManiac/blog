@@ -23,4 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <div class="comment-box">
+        <div class="header">Post comments:</div>
+        <?php require $comment ?>
+        <?php require $comment ?>
+    </div>
+
 </div>

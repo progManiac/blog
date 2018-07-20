@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Post;
-use backend\models\PostSearch;
+use frontend\models\PostSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,6 +40,7 @@ class PostController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'comment' => '../views/comment/comment.php',
         ]);
     }
 
@@ -51,11 +52,12 @@ class PostController extends Controller
     {
         $searchModel = new PostSearch();
 
-        $dataProvider = $searchModel->search(['status' =>  Post::STATUS_PUBLISHED]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $searchModel->search(['status' =>  Post::STATUS_PUBLISHED]),
+            'dataProvider' => $dataProvider,
         ]);
     }
 

@@ -66,4 +66,14 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['post_id' => 'id']);
     }
+
+    public static function getStatuses()
+    {
+        return
+            [
+                static::STATUS_SAVED => 'Saved',
+                static::STATUS_PUBLISHED => 'Published',
+                static::STATUS_DELETED => 'Deleted',
+            ];
+    }
 }

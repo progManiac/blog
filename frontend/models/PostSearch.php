@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
@@ -42,6 +42,8 @@ class PostSearch extends Post
     public function search($params)
     {
         $query = Post::find();
+        $query->andWhere(['status' => Post::STATUS_PUBLISHED]);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -60,7 +62,6 @@ class PostSearch extends Post
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
-            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

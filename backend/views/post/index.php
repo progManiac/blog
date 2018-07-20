@@ -44,7 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         return 'Published';
                     if ($model->status == $model::STATUS_DELETED)
                         return 'Deleted';
-                }
+                },
+                'filter' => \common\models\Post::getStatuses()
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

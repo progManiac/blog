@@ -45,12 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'value' => function($model) {
-                    if ($model->status == $model::STATUS_SAVED)
-                        return 'Saved';
-                    if ($model->status == $model::STATUS_PUBLISHED)
-                        return 'Published';
-                    if ($model->status == $model::STATUS_DELETED)
-                        return 'Deleted';
+                    return $model::getStatuses()[$model->status];
                 }
             ]
         ],
